@@ -3,7 +3,7 @@
 ## Description
 
 Docker MariaDB-based image for Moodle applications.
-Based on [docker-ubuntu-mariadb](https://github.com/demmonico/docker-ubuntu-mariadb) image (v2.0). 
+Based on [docker-ubuntu-mariadb](https://github.com/demmonico/docker-ubuntu-mariadb) image (v3.3). 
 Was developed for using with [Docker Manager](https://github.com/demmonico/docker-manager/). 
 But could be used separately. 
 You could pull image from here and build locally.
@@ -27,22 +27,21 @@ You could pull image from here and build locally.
 
 ## Usage
 
-Docker Compose:
+### Docker Compose
 
 ```sh
 ...
-build: local_path_to_dockerfile
+db:
+  build: local_path_to_dockerfile
   
-volumes:
-  # db tables
-  - ./db/data:/var/lib/mysql
-  
-  # optional custom configs
-  - ./mariadb.cnf:/etc/mysql/my.cnf
-  
-env_file:
-  # provides values for ENV variables VIRTUAL_HOST, PROJECT, HOST_USER_NAME, HOST_USER_ID
-  - host.env
+  environment:
+    # optional
+    - DMC_DB_NAME=test_db
+    
+  volumes:
+    # optional custom configs
+    - ./mariadb.cnf:/etc/mysql/my.cnf
+...
 ```
 
 

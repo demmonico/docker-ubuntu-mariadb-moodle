@@ -4,18 +4,18 @@
 #
 # @author demmonico
 # @image ubuntu-mariadb-moodle
-# @version v1.0
+# @version v3.3
 
 
 FROM demmonico/ubuntu-mariadb
 MAINTAINER demmonico@gmail.com
 
 
-# optional copy files to install container
-COPY install "${INSTALL_DIR}/"
+# copy files to install container
+COPY install "${DMC_INSTALL_DIR}/"
 
 # config DB
-RUN yes | cp -rf "${INSTALL_DIR}/mariadb.cnf" /etc/mysql/my.cnf \
+RUN yes | cp -rf "${DMC_INSTALL_DIR}/mariadb.cnf" /etc/mysql/my.cnf \
     && chmod 600 /etc/mysql/my.cnf
 
 # init run script
